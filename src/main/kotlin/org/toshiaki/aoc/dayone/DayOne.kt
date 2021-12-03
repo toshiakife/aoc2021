@@ -1,7 +1,7 @@
 package org.toshiaki.aoc
 
 fun main() {
-    val file = Helper.readResourceFile("dayOne.txt")
+    val file = Helper.readResourceFile("day01.txt")
     val measurements = mutableListOf<Int>()
     file.forEachLine {
         measurements.add(it.toInt())

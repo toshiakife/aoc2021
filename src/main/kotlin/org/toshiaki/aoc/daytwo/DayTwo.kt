@@ -45,7 +45,7 @@ fun findFinalAimedPosition(instructions: MutableList<String>): Long {
 }
 
 fun readCourse(): MutableList<String> {
-    val file: File = Helper.readResourceFile("dayTwo.txt")
+    val file: File = Helper.readResourceFile("day02.txt")
     val instructions = mutableListOf<String>()
     file.bufferedReader().forEachLine {
         instructions.add(it)
