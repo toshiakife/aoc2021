@@ -1,4 +1,4 @@
-package org.toshiaki.aoc.daythree
+package org.toshiaki.aoc.day03
 
 import org.toshiaki.aoc.Helper
 import java.io.File
