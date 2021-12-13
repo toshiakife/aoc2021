@@ -4,7 +4,7 @@ import org.toshiaki.aoc.Helper
 
 fun main() {
     val heightMap = readHeightMap("day09.txt")
-//    println(findLowPointsRiskLevel(heightMap))
+    println(findLowPointsRiskLevel(heightMap))
     println(findTop3BasinsValue(heightMap))
 }
 
