@@ -38,8 +38,7 @@ fun addSameBasin(key: String, basin: MutableList<String>, heightMap: MutableMap<
     }
     visited.add(key)
     basin.add(key)
-    val adjacents = findAdjacentKeys(key)
-    for (adjacent in adjacents) {
+    for (adjacent in findAdjacentKeys(key, heightMap)) {
         addSameBasin(adjacent, basin, heightMap, visited)
     }
     return basin
@@ -47,7 +46,7 @@ fun addSameBasin(key: String, basin: MutableList<String>, heightMap: MutableMap<
 fun findLowPointsRiskLevel(heightMap: MutableMap<String, Int>): Long {
     val lowPoints = mutableListOf<Int>()
     heightMap.forEach { key, height ->
-        val adjacentKeys: List<String> = findAdjacentKeys(key)
+        val adjacentKeys: List<String> = findAdjacentKeys(key, heightMap)
         if (isLowerThanAdjacents(adjacentKeys, height, heightMap)) {
             lowPoints.add(height)
         }
@@ -65,7 +64,7 @@ fun isLowerThanAdjacents(adjacentKeys: List<String>, height: Int, heightMap: Mut
     return true
 }
 
-fun findAdjacentKeys(key: String): List<String> {
+fun findAdjacentKeys(key: String, heightMap: MutableMap<String, Int>): List<String> {
     val x = key.substringBefore("_").toInt()
     val y = key.substringAfter("_").toInt()
     val adjacentKeys = mutableListOf<String>()
@@ -73,7 +72,7 @@ fun findAdjacentKeys(key: String): List<String> {
     adjacentKeys.add("${x + 1}_$y")
     adjacentKeys.add("${x}_${y - 1}")
     adjacentKeys.add("${x}_${y + 1}")
-    return adjacentKeys
+    return adjacentKeys.filter { heightMap.containsKey(it) }
 }
 
 fun readHeightMap(filename: String): MutableMap<String, Int> {
