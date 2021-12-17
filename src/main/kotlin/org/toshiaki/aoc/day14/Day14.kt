@@ -26,8 +26,8 @@ fun findDiff(formula: PolymerFormula, steps: Int): Long {
         pairMap = newPairMap
     }
     val letterCount: MutableMap<Char, Long> = mutableMapOf()
-    pairMap.forEach { (polimer, count) ->
-        letterCount[polimer.first()] = letterCount.getOrDefault(polimer.first(), 0) + count
+    pairMap.forEach { (polymer, count) ->
+        letterCount[polymer.first()] = letterCount.getOrDefault(polymer.first(), 0) + count
     }
     letterCount[template.last()] = letterCount.getOrDefault(template.last(), 0) + 1
     val sorted = letterCount.toList().sortedBy { (_, count) -> count }
@@ -46,7 +46,7 @@ fun readInstructions(filename: String): PolymerFormula {
             template = line
         }
     }
-    val pairMap = pairs.map { it.substringBefore("->").trim() to it.substringAfter("->").trim() }.toMap()
+    val pairMap = pairs.associate { it.substringBefore("->").trim() to it.substringAfter("->").trim() }
     return PolymerFormula(template, pairMap)
 }
 
